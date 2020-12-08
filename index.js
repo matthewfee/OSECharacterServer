@@ -45,23 +45,25 @@ app.get("/", (req, res, next) => {
 /**
  * Post event
  */
-// app.post("/api/events", async (req, res, next) => {
-//   const { eventName, eventDate } = req.body;
-//   try {
-//     const event = new Event({
-//       eventName,
-//       eventDate,
-//     });
-//     event.save({
-//       eventName,
-//       eventDate,
-//     });
-//     res.status(201).json(event);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+app.post("/api/events", async (req, res, next) => {
+  const { eventName, eventText, eventDate } = req.body;
+  try {
+    const event = new Event({
+      eventName,
+      eventText,
+      eventDate,
+    });
+    event.save({
+      eventName,
+      eventText,
+      eventDate,
+    });
+    res.status(201).json(event);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 mongoose
   .connect(process.env.MONGO_URI, {
