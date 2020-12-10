@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 const Event = require("./models/Event");
 
@@ -8,14 +10,13 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // routes
 app.get("/ping", (req, res, next) => {
-  res.send({ ping: "pong" });
-});
-
-app.get("/", (req, res, next) => {
   res.send({ ping: "pong" });
 });
 
@@ -24,39 +25,40 @@ app.get("/", (req, res, next) => {
 //       });
 
 /**
- * Post event
+ * Get event
  */
-// app.get("/api/events/:id", async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     const event = await Event.findById(id);
-//     if (!event) {
-//       res.status(404).json({
-//         message: "There is no event with this id: " + id,
-//       });
-//     }
-//     res.status(200).json(event);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+app.get("/", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const event = await Event.find()
+    if (!event) {
+      res.status(404).json({
+        message: "No messages found",
+      });
+    }
+    res.status(200).json(event);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 /**
  * Post event
  */
-app.post("/api/events", async (req, res, next) => {
-  const { eventName, eventText, eventDate } = req.body;
+app.post("/", async (req, res, next) => {
+  const {eventText, eventUser, eventDate} = req.body;
+  console.log(req.body)
   try {
     const event = new Event({
-      eventName,
       eventText,
-      eventDate,
+      eventUser,
+      eventDate
     });
     event.save({
-      eventName,
       eventText,
-      eventDate,
+      eventUser,
+      eventDate
     });
     res.status(201).json(event);
   } catch (err) {
