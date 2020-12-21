@@ -5,13 +5,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 
-const pdftk = require("node-pdftk");
+// const pdftk = require("node-pdftk");
 const herokuConfigurePath = "/app/bin/pdftk.exe";
 const configurePath = `C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe`;
 
-pdftk.configure({
-  bin: herokuConfigurePath,
-});
+// pdftk.configure({
+//   bin: herokuConfigurePath,
+// });
 
 
 const PORT = process.env.PORT || 5000;
