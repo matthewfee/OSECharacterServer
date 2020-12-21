@@ -65,10 +65,10 @@ app.post('/', (req, res, next) => {
 //   });
 // });
 
-// app.get("/", (req, res, next) => {
-//   console.log(req.body);
-//   res.send({ ping: "pong" });
-// });
+app.get("/", (req, res, next) => {
+  console.log(req.body);
+  res.send({ ping: "pong" });
+});
 
 // app.listen(PORT, () => {
 //         console.log(`listening on port ${PORT}`);
