@@ -41,15 +41,15 @@ const formData = { "Name 2": "Jeffrey", "Alignment 2": "Lawful",
 
 app.post('/', (req, res, next) => {
   pdftk
-      .input('./public/CharacterSheetTemplate6.pdf')
-      .fillForm(req.body)
-      .flatten()
-      .output()
-      .then(buf => {
-          // res.type('application/pdf'); // If you omit this line, file will download
-          res.send(buf);
-      })
-      .catch(next);
+    .input("./public/CharacterSheetTemplate6.pdf")
+    .fillForm(formData)
+    .flatten()
+    .output()
+    .then((buf) => {
+      // res.type('application/pdf'); // If you omit this line, file will download
+      res.send(buf);
+    })
+    .catch(next);
 });
 
 // app.get("/", function (req, res) {
