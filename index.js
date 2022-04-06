@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const Character = require("./models/Character")
+// const Character = require("./models/Character")
 
 mongoose
   .connect(process.env.MONGO_URI, {
