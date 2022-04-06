@@ -207,7 +207,7 @@ app.post("/", async (req, res, next) => {
       weapons,
       wisdom,
     })
-    character.save({
+    Character.save({
       AC,
       alignment,
       appearance,
