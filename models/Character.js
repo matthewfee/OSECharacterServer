@@ -38,9 +38,9 @@ const characterSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  name: {
+  characterName: {
     type: String,
-    required: true,
+    required: false,
   },
   charisma: {
     type: Number,
@@ -64,7 +64,7 @@ const characterSchema = new mongoose.Schema({
   },
   hasSpells: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   hasLanguages: {
     type: Boolean,
@@ -120,7 +120,7 @@ const characterSchema = new mongoose.Schema({
   },
   unarmouredAC: {
     type: Number,
-    required: true,
+    required: false,
   },
   weapons: {
     type: Array,
