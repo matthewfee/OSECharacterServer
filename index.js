@@ -19,7 +19,6 @@ mongoose
   .catch((err) => console.error(err))
 
 
-// const pdftk = require("node-pdftk");
 // const herokuConfigurePath = "/app/bin/pdftk.exe";
 // const configurePath = `C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe`;
 
