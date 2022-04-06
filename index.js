@@ -6,10 +6,13 @@ const bodyParser = require('body-parser')
 // const Character = require("./models/Character")
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.13arz.mongodb.net/oldschoolessentials?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+  )
   .then(() => {
     console.log("Connected to DB")
     app.listen(PORT, () => {
