@@ -5,6 +5,20 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const Character = require("./models/Character")
 
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to DB")
+    app.listen(PORT, () => {
+      console.log(`listening on port ${PORT}`)
+    })
+  })
+  .catch((err) => console.error(err))
+
+
 // const pdftk = require("node-pdftk");
 // const herokuConfigurePath = "/app/bin/pdftk.exe";
 // const configurePath = `C:\\Program Files (x86)\\PDFtk\\bin\\pdftk.exe`;
@@ -233,15 +247,3 @@ app.post("/", async (req, res, next) => {
   }
 })
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to DB")
-    app.listen(PORT, () => {
-      console.log(`listening on port ${PORT}`)
-    })
-  })
-  .catch((err) => console.error(err))
